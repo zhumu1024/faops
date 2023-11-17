@@ -24,9 +24,40 @@ brew install wang-q/tap/faops
 
 ## faops 命令解释
 
-``` shell
+### help 获取帮助信息
+```shell
+faops help
 
-cat ufasta.fa | faops some stdin list.file  stdout 
+$ ./faops
 
- 
+Usage:     faops <command> [options] <arguments>
+Version:   0.8.21
+
+Commands:
+    help           print this message
+    count          count base statistics in FA file(s)
+    size           count total bases in FA file(s)
+    masked         masked (or gaps) regions in FA file(s)
+    frag           extract sub-sequences from a FA file
+    rc             reverse complement a FA file
+    one            extract one fa record
+    some           extract some fa records
+    order          extract some fa records by the given order
+    replace        replace headers from a FA file
+    filter         filter fa records
+    split-name     splitting by sequence names
+    split-about    splitting to chunks about specified size
+    n50            compute N50 and other statistics
+    dazz           rename records for dazz_db
+    interleave     interleave two PE files
+    region         extract regions from a FA file
+
+Options:
+    There're no global options.
+    Type "faops command-name" for detailed options of each command.
+    Options *MUST* be placed just after command.
+
+
 ```
+
+
