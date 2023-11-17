@@ -10,7 +10,17 @@ faops可以完成：
 * 合并双端测序数据
 * 。。。。。。。
 
+## faops下载编译
 
+```shell
+git clone https://github.com/wang-q/faops
+cd faops
+make
+```
+使用Homebrew or Linuxbrew下载：
+```shell
+brew install wang-q/tap/faops
+```
 
 ## faops 命令解释
 
