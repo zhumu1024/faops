@@ -21,12 +21,33 @@ make
 ```shell
 brew install wang-q/tap/faops
 ```
-
+本说明中展示例子中使用的的fa文件： ufasta.fa
+```
+>read1
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatc
+GCaTaTC
+>read2
+AtagcAagCtcAgttcaACttCAcCGGT
+A
+AaTtcttgTAGtgTcTCgacCgcCcCctTGTACtgtaGG
+caAtaGTaaTgAcTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTC
+ctGgAttttgcgcgTggtatgagGgAGtctcaATTGTCaccTaC
+GTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
+>read3
+gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAgg
+tgTgTttGTTaCCtcCTCGtgACCC
+```
 ## faops 命令解释
 
-### help 获取帮助信息
+### 1. help 获取帮助信息
+
+输入：
 ```shell
-faops help
+$ faops help
+```
+输出：
+
+```shell
 
 $ ./faops
 
@@ -59,5 +80,12 @@ Options:
 
 
 ```
+### 2. count 统计基础统计信息，包括fa文件中各序列名称，长度，A/C/G/T/N这几个碱基的数量
+
+使用方法：`faops count <in.fa> [more_files.fa]`
+
+具体例子：
+
+
 
 
