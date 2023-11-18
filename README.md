@@ -560,24 +560,7 @@ gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
 >read/3/0_73
 gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 ```
-### . 
-功能：
 
-使用方法：
-
-* options选项：
-```
-  
-```
-实用举例：
-输入：
-```shell
-
-```
-输出：
-```
-
-```
 
 ### 15. interleave 
 功能：将双端测序的两个文件合成一个文件（也支持只输入一个文件，此时另一端以N填补）
@@ -593,9 +576,29 @@ gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 实用举例：
 输入：
 ```shell
+faops interleave -q -p test R1.fq R2.fq > out.fa
+```
+### 16. region
+功能：从一个fasta文件中摘取一个或多个指定的序列片段，可以标注
 
+使用方法：faops region [options] <in.fa> <region.txt> <out.fa>
+
+* options选项：
+```
+    -s         在header中添加 +
+    -l INT     置输出时每行序列的长度，默认为80       
+实用举例：
+输入：
+```shell
+ faops region -s  u1.fa region.txt out.fa
+```
+region.txt的内容：
+```
+read1:50-60
 ```
 输出：
 ```
+>read1(+):50-60
+TacgtaACatc
 
 ```
