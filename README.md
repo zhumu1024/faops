@@ -154,7 +154,7 @@ total   396     91      104     100     101     0
 使用方法： `faops size <in.fa> [more_files.fa]`
 
 实用举例：
-输入：可以从fa文件，zipped文件，及stdin中读取数据，具体请参照
+输入：可以从fa文件，zipped文件，及stdin中读取数据，具体请参照[count](https://github.com/zhumu1024/faops/blob/main/README.md#2-count)
 ```shell
 faops size u1.fa
 ```
@@ -165,14 +165,261 @@ read1   106
 read2   217
 read3   73
 ```
+### 3.masked
+功能： 在统计时屏蔽fa文件中的某些区域
+使用方法：faops masked [options] <in.fa> [more_files.fa]
+* options选项
+  ```
+  -g 只记录N/N的区域
+  ```
+输入：
+```shell
+ faops masked u1.fa | grep "read1"
+ # 只查看第一条序列的输出数据
+```
 
+输出：
+```
+read1:1-2
+read1:7
+read1:10
+read1:12-15
+read1:17
+read1:23-25
+read1:29-32
+read1:34
+read1:40
+read1:42-43
+read1:46
+read1:51-55
+read1:58-62
+read1:66
+read1:68-73
+read1:75-76
+read1:80
+read1:82-83
+read1:85-87
+read1:89-91
+read1:93
+read1:95
+read1:97-99
+read1:102
+read1:104
+```
 
+### 4. frag
+功能： 从fa文件中提取子片段
 
+使用方法： faops frag [options] <in.fa> <start> <end> <out.fa>
+* options选项：
+```
+ -l INT     设置输出时每行序列的长度，默认为80
+```
 
+实用举例：
+输入：在在输入的片段不指定的情况下，默认使用第一个序列，如果想要指定，可以与其他命令联用。
 
+```shell
+faops frag -l 20  u1.fa 1 20 out.fa
 
+# -l 20 规定输出时每行的序列长度为20
+# 1 20 规定提取子片段的区域
 
+```
 
+输出：
+```
+>read1:1-20
+taGGCGcGGgCggtgTgGAT
+```
 
-   
+### 5. rc
+功能：获得所提供序列的reverse complement （反向互补）片段
+
+使用方法：faops rc [options] <in.fa> <out.fa>
+
+* options选项：
+```
+    -n         保持各序列的name不变，不添加RC_
+    -r         仅得到数据的反向片段，而不互补, name中添加R_
+    -c         仅得到数据的互补片段，而不反向, name中添加C_
+    -f STR     仅对给定列表（list.file)中的序列进行处理
+    -l INT     设置输出时每行序列的长度，默认为80
+```
+实用举例：
+输入：
+```shell
+faops rc u1.fa out.fa
+```
+输出：
+```
+>RC_read1
+GAtAtGCgatCgGaAtcaTataGggCcGAGacCggtcgaAgTTCccgatGTtacgtAGTTtTAtcAaGCGCGcAacctCT
+GcctTAATCcAcaccGcCCgCGCCta
+>RC_read2
+CTAatGccAGaTGtAgTCTtgTgTaGcGCTgggatACGtAggtGACAATtgagaCTcCctcataccAcgcgcaaaaTcCa
+gGACCaaGGgtgAgGgaTtCGcggATTCTcTTCctGtggtGgTctcttACGtCctAgTcAttACtaTtgCCtacaGTACA
+agGgGgcGgtcGAgAcaCTAcaagaAtTTACCGgTGaaGTtgaacTgaGctTgctaT
+>RC_read3
+GGGTcaCGAGgaGGtAACaaAcAcaccTggagatTAcCcccGGctAGaGaTgcTTCGggacGcCtaagAAAAc
+```
+----------------------------------------------------------------------------------------------------------
+进阶使用： 使用-f 选项 例子
+list.file 内容
+```
+read1
+```
+
+输入：
+```shell
+faops rc -f list.file u1.fa out.fa
+```
+
+输出：
+```
+# 在list.file中只规定了read1，这里只对read1进行处理
+>RC_read1
+GAtAtGCgatCgGaAtcaTataGggCcGAGacCggtcgaAgTTCccgatGTtacgtAGTTtTAtcAaGCGCGcAacctCT
+GcctTAATCcAcaccGcCCgCGCCta
+>read2
+AtagcAagCtcAgttcaACttCAcCGGTAAaTtcttgTAGtgTcTCgacCgcCcCctTGTACtgtaGGcaAtaGTaaTgA
+cTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTCctGgAttttgcgcgTggtatgagG
+gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
+>read3
+gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
+```
+
+### 6. one
+功能：只提取一个fa序列
+
+使用方法：faops one [options] <in.fa> <name> <out.fa>
+
+* options选项：
+```
+ -l INT     设置输出时每行序列的长度，默认为80   
+```
+实用举例：
+输入：
+```shell
+faops one u1.fa read1 out.fa
+```
+输出：
+```
+>read1
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCg
+GccCtatAtgaTtCcGatcGCaTaTC
+```
+### 7. some
+功能：提取某些序列
+
+使用方法：faops some [options] <in.fa> <list.file> <out.fa>
+
+* options选项：
+```
+    -i         invert 提取未提供的fa序列
+    -l INT     设置输出时每行序列的长度，默认为80   
+```
+实用举例：
+输入：
+```shell
+faops some u1.fa list.file out.fa
+```
+输出：
+```
+>read1
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCg
+GccCtatAtgaTtCcGatcGCaTaTC
+>read2
+AtagcAagCtcAgttcaACttCAcCGGTAAaTtcttgTAGtgTcTCgacCgcCcCctTGTACtgtaGGcaAtaGTaaTgA
+cTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTCctGgAttttgcgcgTggtatgagG
+gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
+
+```
+### 7. order
+功能：通过给定的某些order（命令信息）提取fa序列
+使用方法：faops order [options] <in.fa> <list.file> <out.fa>
+
+* options选项：
+```
+    -l INT     设置输出时每行序列的长度，默认为80     
+```
+实用举例：
+输入：
+```shell
+faops order -l 200 u1.fa list.file out.fa
+```
+输出：
+```
+>read1
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
+>read2
+AtagcAagCtcAgttcaACttCAcCGGTAAaTtcttgTAGtgTcTCgacCgcCcCctTGTACtgtaGGcaAtaGTaaTgAcTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTCctGgAttttgcgcgTggtatgagGgAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAG
+AcTaCAtCTggCatTAG
+
+通过其他形式传递order
+输入：
+```shell
+faops order -l 200 u1.fa  <(echo read1)  out.fa
+```
+
+输出：
+```
+>read1
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
+```
+
+### 5. 
+功能：
+
+使用方法：
+
+* options选项：
+```
+    
+```
+实用举例：
+输入：
+```shell
+
+```
+输出：
+```
+
+```
+
+### 8. replace
+功能：对特定序列名进行替换，也可以对指定的序列进行提取，改名，并输出
+
+使用方法：faops replace [options] <in.fa> <replace.tsv> <out.fa>
+
+* options选项：
+```
+    -s         只提取某些序列，类似some
+    -l INT     设置输出时每行序列的长度，默认为80     
+```
+实用举例：
+replace.tsv 内容：
+```
+read1	106
+read2	217
+read3	73
+```
+
+输入：
+```shell
+faops replace u1.fa replace.tsv out.fa
+```
+输出：
+```
+>106
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCg
+GccCtatAtgaTtCcGatcGCaTaTC
+>217
+AtagcAagCtcAgttcaACttCAcCGGTAAaTtcttgTAGtgTcTCgacCgcCcCctTGTACtgtaGGcaAtaGTaaTgA
+cTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTCctGgAttttgcgcgTggtatgagG
+gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
+>73
+gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
+```
+
 
