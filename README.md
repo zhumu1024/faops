@@ -21,7 +21,7 @@ make
 ```shell
 brew install wang-q/tap/faops
 ```
-本说明中展示例子中使用的的fa文件： ufasta.fa
+本说明中展示例子中使用的的fa文件： u1.fa
 ```
 >read1
 taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatc
@@ -80,12 +80,99 @@ Options:
 
 
 ```
-### 2. count 统计基础统计信息，包括fa文件中各序列名称，长度，A/C/G/T/N这几个碱基的数量
+### 2. count 
+
+功能： 统计基础统计信息，包括fa文件中各序列名称，长度，A/C/G/T/N这几个碱基的数量
 
 使用方法：`faops count <in.fa> [more_files.fa]`
 
-具体例子：
+实用举例：
+
+统计fa文件：
+
+输入：
+```shell
+faops count u1.fa
+```
+u1.fa内容：
+```
+>read1
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatc
+GCaTaTC
+>read2
+AtagcAagCtcAgttcaACttCAcCGGT
+A
+AaTtcttgTAGtgTcTCgacCgcCcCctTGTACtgtaGG
+caAtaGTaaTgAcTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTC
+ctGgAttttgcgcgTggtatgagGgAGtctcaATTGTCaccTaC
+GTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
+>read3
+gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAgg
+tgTgTttGTTaCCtcCTCGtgACCC
+```
+输出：
+```
+#seq    len     A       C       G       T       N
+read1   106     24      25      32      25      0
+read2   217     57      58      49      53      0
+read3   73      10      21      19      23      0
+total   396     91      104     100     101     0
+```
+----------------------------------------------------------------------------------------------------------
+ 从gzipped文件中读取数据
+
+输入：
+```shell
+faops count u1.fa.gz
+```
+输出：
+```
+#seq    len     A       C       G       T       N
+read1   106     24      25      32      25      0
+read2   217     57      58      49      53      0
+read3   73      10      21      19      23      0
+total   396     91      104     100     101     0
+```
+----------------------------------------------------------------------------------------------------------
+ 从stadin（标准输入）中读取数据
+   输入：
+   ```shell
+    cat u1.fa | faops count stdin
+   ```
+输出：
+```
+#seq    len     A       C       G       T       N
+read1   106     24      25      32      25      0
+read2   217     57      58      49      53      0
+read3   73      10      21      19      23      0
+total   396     91      104     100     101     0
+```
+### 2.size 
+
+功能：统计序列长度 输入
+
+使用方法： `faops size <in.fa> [more_files.fa]`
+
+实用举例：
+输入：可以从fa文件，zipped文件，及stdin中读取数据，具体请参照
+```shell
+faops size u1.fa
+```
+
+输出：
+```
+read1   106
+read2   217
+read3   73
+```
 
 
 
+
+
+
+
+
+
+   
 
