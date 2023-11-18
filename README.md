@@ -335,7 +335,7 @@ cTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTCctGgAttttgcgcgTggtatgagG
 gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
 
 ```
-### 7. order
+### 8. order
 功能：通过给定的某些order（命令信息）提取fa序列
 使用方法：faops order [options] <in.fa> <list.file> <out.fa>
 
@@ -368,26 +368,8 @@ faops order -l 200 u1.fa  <(echo read1)  out.fa
 taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCgGccCtatAtgaTtCcGatcGCaTaTC
 ```
 
-### 5. 
-功能：
 
-使用方法：
-
-* options选项：
-```
-    
-```
-实用举例：
-输入：
-```shell
-
-```
-输出：
-```
-
-```
-
-### 8. replace
+### 9. replace
 功能：对特定序列名进行替换，也可以对指定的序列进行提取，改名，并输出
 
 使用方法：faops replace [options] <in.fa> <replace.tsv> <out.fa>
@@ -421,5 +403,199 @@ gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
 >73
 gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 ```
+### 10. filter
+功能：对fa文件进行筛选
+
+使用方法： faops filter [options] <in.fa> <out.fa>
+
+* options选项：
+```
+    -a INT     设定筛选的序列长度的最小值 
+    -z INT     设定筛选的序列长度的最大值 
+    -n INT     设定筛选的序列中所含N/n的最大限制数量
+    -u         Unique,  去除重复
+    -U         Upper case, 将序列数据中的小写全部改为大写
+    -b         将几行数据合成一行
+    -N         将一些模糊碱基用N代替
+    -d         将破折号（dashes）去除
+    -s         simplify 简化序列的名称
+    -l INT     设置输出时每行序列的长度，默认为80     
+```
+实用举例：
+输入：
+```shell
+faops filter -a 100 -z 200 -d -s u1.fa out.fa
+# -a 所筛选数据长度最小值为100
+# -z 所筛选数据长度最大值为200
+# read1 read2 read3的长度分别为106 217 73
+
+```
+输出：
+```
+>read1
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCg
+GccCtatAtgaTtCcGatcGCaTaTC
+
+```
+### 11. split-name
+功能：分割序列文件，使用序列名称作为files的名称
+
+使用方法：faops split-name [options] <in.fa> <outdir>
+
+* options选项：
+```
+    -l INT     设置输出时每行序列的长度，默认为80         
+```
+实用举例：
+输入：
+```shell
+faops split-name -l 100 u1.fa ../out_file
+```
+输出：
+```
+read1.fa
+read2.fa
+read3.fa
+```
 
 
+### 12. split-about
+功能：按byte大小对序列数据文件进行切割
+
+使用方法：faops split-about [options] <in.fa> <approx_size> <outdir>
+
+* options选项：
+```
+    -e         even 分割时保持均匀
+    -m INT     切割行数的最大值
+    -l INT     设置输出时每行序列的长度，默认为80         
+```
+实用举例：
+输入：
+```shell
+ faops split-about u1.fa 12 ../out_file
+```
+输出：
+```
+000.fa内容：
+>read3
+gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
+
+001.fa内容：
+>read2
+AtagcAagCtcAgttcaACttCAcCGGTAAaTtcttgTAGtgTcTCgacCgcCcCctTGTACtgtaGGcaAtaGTaaTgA
+cTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTCctGgAttttgcgcgTggtatgagG
+gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTA
+
+002.fa内容：
+>read3
+gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
+
+```
+
+
+### 13. n50 
+功能：计算N50或其他统计特征
+
+使用方法： faops n50 [options] <in.fa> [more_files.fa]
+
+* options选项：
+```
+    -H         不展示header，只返回统计值
+    -N INT     计算Nx 默认是N50
+    -S         sum 碱基总数计算
+    -A         average 计算序列的平均碱基数
+    -E         计算E-size 表示随机匹配的可能性，E值越大，随机匹配的可能性越大
+    -C         计算总序列数
+    -g INT     指定预计的基因组大小，方便计算N50
+```
+实用举例：
+输入：
+```shell
+ faops n50 u1.fa
+```
+输出：
+```
+N50     217
+```
+ faops n50 -N 90 -S -A -E -C u1.fa
+输入：
+```shell
+
+```
+输出：
+```
+N90     73
+S       396
+A       132.00
+E       160.74
+C       3
+```
+### 14. dazz
+功能：序列信息标准化，重复序列仅保留第一个
+
+使用方法：faops dazz [options] <in.fa> <out.fa>
+
+* options选项：
+```
+    -p STR     设置新的序列名称前缀 默认是read
+    -s INT     设置起始的序号，默认是0
+    -a         不删除重复序列
+    -l INT     设置输出时每行序列的长度，默认为80       
+```
+实用举例：
+输入：
+```shell
+faops dazz u1.fa out.fa
+```
+输出：
+```
+>read/1/0_106
+taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCg
+GccCtatAtgaTtCcGatcGCaTaTC
+>read/2/0_217
+AtagcAagCtcAgttcaACttCAcCGGTAAaTtcttgTAGtgTcTCgacCgcCcCctTGTACtgtaGGcaAtaGTaaTgA
+cTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTCctGgAttttgcgcgTggtatgagG
+gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
+>read/3/0_73
+gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
+```
+### . 
+功能：
+
+使用方法：
+
+* options选项：
+```
+  
+```
+实用举例：
+输入：
+```shell
+
+```
+输出：
+```
+
+```
+
+### 15. interleave 
+功能：将双端测序的两个文件合成一个文件（也支持只输入一个文件，此时另一端以N填补）
+
+使用方法：faops interleave [options] <R1.fa> [R2.fa]
+
+* options选项：
+```
+    -q         此时输入需要是fastq文件
+    -p STR     设置新的序列名称前缀 默认是read
+    -s INT     设置起始的序号，默认是0
+```
+实用举例：
+输入：
+```shell
+
+```
+输出：
+```
+
+```
