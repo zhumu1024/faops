@@ -11,7 +11,18 @@ faops可以完成的功能：
 * 。。。。。。。
 
 faops的命令：
-- [help](https://github.com/zhumu1024/faops#1-help-%E8%8E%B7%E5%8F%96%E5%B8%AE%E5%8A%A9%E4%BF%A1%E6%81%AF) 
+- [help](https://github.com/zhumu1024/faops#1-help-%E8%8E%B7%E5%8F%96%E5%B8%AE%E5%8A%A9%E4%BF%A1%E6%81%AF)
+- [count](https://github.com/zhumu1024/faops#2-count)
+- [size](https://github.com/zhumu1024/faops#2size)
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
+- []()
 
 ## faops下载编译
 
