@@ -12,10 +12,12 @@ faops可以完成的功能：
 
 faops的命令：
 
-| Header 1 | Header 2 | Header 3 |
-|----------|:---------:|----------|
-| Cell 1   |   Cell 2  |  Cell 3  |
-| Cell 4   |   Cell 5  |  Cell 6  |
+| Header 1 | Header 2 | Header 3 | header 4|
+|----------|:---------:|----------|----------|
+| Cell 1   |   Cell 2  |  Cell 3  | cell 4   |
+| Cell 4   |   Cell 5  |  Cell 6  | cell 4   |
+| Cell 4   |   Cell 5  |  Cell 6  | cell 4   |
+| Cell 4   |   Cell 5  |  Cell 6  | cell 4   |
 
 
 ## faops下载编译
