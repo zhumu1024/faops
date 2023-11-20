@@ -623,3 +623,5 @@ read1:50-60
 TacgtaACatc
 
 ```
+## 总结
+faops是由南京大学生命科学学院王强老师开发的一款处理fasta文件的生信工具，可以帮助我们高效而便捷的处理fa序列数据。更具体的信息及相关资源可以点击--[wang-q_faops](https://github.com/wang-q/faops)
