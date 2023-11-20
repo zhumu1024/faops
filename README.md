@@ -13,16 +13,22 @@ faops可以完成的功能：
 faops的命令：
 - [help](https://github.com/zhumu1024/faops#1-help-%E8%8E%B7%E5%8F%96%E5%B8%AE%E5%8A%A9%E4%BF%A1%E6%81%AF)
 - [count](https://github.com/zhumu1024/faops#2-count)
-- [size](https://github.com/zhumu1024/faops#2size)
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
-- []()
+- [size](https://github.com/zhumu1024/faops#3size)
+- [masked](https://github.com/zhumu1024/faops#4masked)
+- [frag](https://github.com/zhumu1024/faops#5-frag)
+- [rc](https://github.com/zhumu1024/faops#6-rc)
+- [one](https://github.com/zhumu1024/faops#7-one)
+- [some](https://github.com/zhumu1024/faops#8-some)
+- [order](https://github.com/zhumu1024/faops#9-order)
+- [replace](https://github.com/zhumu1024/faops#10-replace)
+- [filter](https://github.com/zhumu1024/faops#11-filter)
+- [split-name](https://github.com/zhumu1024/faops#12-split-name)
+- [split-about](https://github.com/zhumu1024/faops#13-split-about)
+- [n50](https://github.com/zhumu1024/faops#14-n50)
+- [dazz](https://github.com/zhumu1024/faops#15-dazz)
+- [interleave](https://github.com/zhumu1024/faops#16-interleave)
+- [region](https://github.com/zhumu1024/faops#17-region)
+
 
 ## faops下载编译
 
@@ -278,8 +284,9 @@ agGgGgcGgtcGAgAcaCTAcaagaAtTTACCGgTGaaGTtgaacTgaGctTgctaT
 GGGTcaCGAGgaGGtAACaaAcAcaccTggagatTAcCcccGGctAGaGaTgcTTCGggacGcCtaagAAAAc
 ```
 ----------------------------------------------------------------------------------------------------------
-进阶使用： 使用-f 选项 例子
-list.file 内容
+使用-f 选项:
+
+list.file 内容:
 ```
 read1
 ```
