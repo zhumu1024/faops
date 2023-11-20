@@ -161,7 +161,7 @@ read2   217     57      58      49      53      0
 read3   73      10      21      19      23      0
 total   396     91      104     100     101     0
 ```
-### 2.size 
+### 3.size 
 
 功能：统计序列长度 输入
 
@@ -179,7 +179,7 @@ read1   106
 read2   217
 read3   73
 ```
-### 3.masked
+### 4.masked
 功能： 在统计时屏蔽fa文件中的某些区域
 使用方法：faops masked [options] <in.fa> [more_files.fa]
 * options选项
@@ -221,7 +221,7 @@ read1:102
 read1:104
 ```
 
-### 4. frag
+### 5. frag
 功能： 从fa文件中提取子片段
 
 使用方法： faops frag [options] <in.fa> <start> <end> <out.fa>
@@ -247,7 +247,7 @@ faops frag -l 20  u1.fa 1 20 out.fa
 taGGCGcGGgCggtgTgGAT
 ```
 
-### 5. rc
+### 6. rc
 功能：获得所提供序列的reverse complement （反向互补）片段
 
 使用方法：faops rc [options] <in.fa> <out.fa>
@@ -303,7 +303,7 @@ gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
 gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 ```
 
-### 6. one
+### 7. one
 功能：只提取一个fa序列
 
 使用方法：faops one [options] <in.fa> <name> <out.fa>
@@ -323,7 +323,7 @@ faops one u1.fa read1 out.fa
 taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCg
 GccCtatAtgaTtCcGatcGCaTaTC
 ```
-### 7. some
+### 8. some
 功能：提取某些序列
 
 使用方法：faops some [options] <in.fa> <list.file> <out.fa>
@@ -349,7 +349,7 @@ cTagGaCGTaagagAcCaccaCagGAAgAGAATccgCGaAtcCcTcacCCttGGTCctGgAttttgcgcgTggtatgagG
 gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
 
 ```
-### 8. order
+### 9. order
 功能：通过给定的某些order（命令信息）提取fa序列
 使用方法：faops order [options] <in.fa> <list.file> <out.fa>
 
@@ -383,7 +383,7 @@ taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCg
 ```
 
 
-### 9. replace
+### 10. replace
 功能：对特定序列名进行替换，也可以对指定的序列进行提取，改名，并输出
 
 使用方法：faops replace [options] <in.fa> <replace.tsv> <out.fa>
@@ -417,7 +417,7 @@ gAGtctcaATTGTCaccTaCGTatcccAGCgCtAcAcaAGAcTaCAtCTggCatTAG
 >73
 gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 ```
-### 10. filter
+### 11. filter
 功能：对fa文件进行筛选
 
 使用方法： faops filter [options] <in.fa> <out.fa>
@@ -451,7 +451,7 @@ taGGCGcGGgCggtgTgGATTAaggCAGaggtTgCGCGCtTgaTAaAACTacgtaACatcggGAAcTtcgaccGgtCTCg
 GccCtatAtgaTtCcGatcGCaTaTC
 
 ```
-### 11. split-name
+### 12. split-name
 功能：分割序列文件，使用序列名称作为files的名称
 
 使用方法：faops split-name [options] <in.fa> <outdir>
@@ -473,7 +473,7 @@ read3.fa
 ```
 
 
-### 12. split-about
+### 13. split-about
 功能：按byte大小对序列数据文件进行切割
 
 使用方法：faops split-about [options] <in.fa> <approx_size> <outdir>
@@ -508,7 +508,7 @@ gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 ```
 
 
-### 13. n50 
+### 14. n50 
 功能：计算N50或其他统计特征
 
 使用方法： faops n50 [options] <in.fa> [more_files.fa]
@@ -545,7 +545,7 @@ A       132.00
 E       160.74
 C       3
 ```
-### 14. dazz
+### 15. dazz
 功能：序列信息标准化，重复序列仅保留第一个
 
 使用方法：faops dazz [options] <in.fa> <out.fa>
@@ -576,7 +576,7 @@ gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 ```
 
 
-### 15. interleave 
+### 16. interleave 
 功能：将双端测序的两个文件合成一个文件（也支持只输入一个文件，此时另一端以N填补）
 
 使用方法：faops interleave [options] <R1.fa> [R2.fa]
@@ -592,7 +592,7 @@ gTTTTcttaGgCgtccCGAAgcAtCtCTagCCgggGgTAatctccAggtgTgTttGTTaCCtcCTCGtgACCC
 ```shell
 faops interleave -q -p test R1.fq R2.fq > out.fa
 ```
-### 16. region
+### 17. region
 功能：从一个fasta文件中摘取一个或多个指定的序列片段，可以标注
 
 使用方法：faops region [options] <in.fa> <region.txt> <out.fa>
